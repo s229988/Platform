@@ -21,10 +21,7 @@ def newOrders(request):
     else:
         form = CustomerForm()
 
-    articleID = Orders.objects.only("article_id")
-    context = {'articleID': articleID,}
-    template = loader.get_template("newOrders.html")
-    return render(template.render(context, request), {'form': form})
+    return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
     return render(request, 'overview.html')
