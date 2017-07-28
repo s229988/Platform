@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.template import loader
 
 from .forms import CustomerForm
+from .models import Orders
 
 def newOrders(request):
     # if this is a POST request we need to process the form data
