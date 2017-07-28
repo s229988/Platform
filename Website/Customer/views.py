@@ -23,7 +23,7 @@ def newOrders(request):
 
     articleID = Orders.objects.only("article_id")
     context = {'articleID': articleID,}
-    template = loader.get_template('newOrders.html')
+    template = loader.get_template("newOrders.html")
     return render(template.render(context, request), {'form': form})
 
 def overview(request):
