@@ -76,7 +76,7 @@ class Matches(Base):
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-engine = create_engine('mysql+mysqlconnector://root:iot17@127.0.0.1/database2', echo=True)
+engine = create_engine('mysql+mysqlconnector://root:iot17@127.0.0.1/website', echo=True)
 Session = sessionmaker(bind=engine)
 
 if __name__ == '__main__':
