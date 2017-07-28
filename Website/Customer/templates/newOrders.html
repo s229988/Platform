@@ -25,7 +25,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>Artikel 1</td>
+                <td>{% Orders.objects.only("article_id") %}</td>
                 <td>5</td>
                 <td>10 €</td>
                 <td>15.07.2017</td>
