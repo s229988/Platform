@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 
 
+
 def query(resource):
     r = requests.get('http://10.105.11.20:8080/webapp/api/v1/' + resource,
         headers={'AuthenticationToken': 'c9e52cb6-95b4-4ae3-b4bb-4cde692f3a4e'}
