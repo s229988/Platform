@@ -26,5 +26,3 @@ def newOrders(request):
 def overview(request):
     articles[] = Orders.objects.only("article_id").values()
     return render(request, 'overview.html', {'article': articles})
-
-blalbala
