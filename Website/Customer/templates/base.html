@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+{%  load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<!-- navigation bar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <a class="navbar-brand">Kunde</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'overview' %}">
+                        Übersicht
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'newOrders' %}">
+                        Neue Aufträge
+                    </a>
+                </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>
