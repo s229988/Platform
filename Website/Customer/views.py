@@ -24,6 +24,7 @@ def newOrders(request):
     return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
-    return render(request, 'overview.html', {'article': 'article123'})
+    articles[] = Orders.objects.only("article_id").values()
+    return render(request, 'overview.html', {'article': articles})
 
 blalbala
