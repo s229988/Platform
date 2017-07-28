@@ -21,8 +21,8 @@ def newOrders(request):
     else:
         form = CustomerForm()
 
-    return render(request, 'newOrders.html', {'form': form})
-
+    articleID = "Test123"
+    return render(request, 'newOrders.html', {'form': form}, articleID)
 
 def overview(request):
     return render(request, 'overview.html')
