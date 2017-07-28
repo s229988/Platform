@@ -24,6 +24,5 @@ def newOrders(request):
     return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
-    articleID = {1: "Test123"}
-    return render(request, 'overview.html', {'articleID': articleID})
+    return render(request, 'overview.html', {'article': 'article123'})
 
