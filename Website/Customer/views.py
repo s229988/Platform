@@ -23,6 +23,7 @@ def newOrders(request):
 
     return render(request, 'newOrders.html', {'form': form})
 
+
 def overview(request):
     return render(request, 'overview.html')
 
