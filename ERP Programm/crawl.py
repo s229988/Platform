@@ -4,7 +4,7 @@ import requests
 import json
 from datetime import datetime
 
-
+BLABLALBAL
 
 def query(resource):
     r = requests.get('http://10.105.11.20:8080/webapp/api/v1/' + resource,
