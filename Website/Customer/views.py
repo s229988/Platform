@@ -24,5 +24,10 @@ def newOrders(request):
     return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
-    return render(request, 'overview.html', {'article': 'article123'})
+    i = 0
+    article_Set = Orders.Objects.all()
+    for articles in article_Set:
+        article_Name[i] = article_Set.article_id
+        i = i+1
+    return render(request, 'overview.html', {'article': article_Name[0]})
 
