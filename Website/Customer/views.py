@@ -31,4 +31,3 @@ def overview(request):
         i = i+1
     return render(request, 'overview.html', {'article': article_Name[0]})
 
-
