@@ -24,5 +24,5 @@ def newOrders(request):
     return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
-    articles = Orders.objects.all()
+    articles = Orders.objects.defer("article_image")
     return render(request, 'overview.html', {'article_list': articles})

@@ -13,9 +13,9 @@ def query(resource):
     return r
     
 costumer_id = 1
-article_number = 101
+production_number = 1004
 
-d = query('productionOrder/?articleNumber-eq={}'.format(article_number)).json()
+d = query('productionOrder/?productionOrderNumber-eq={}'.format(production_number)).json()
 
 session = db.Session()
 
@@ -32,7 +32,8 @@ if 'result' in d and len(d['result']) > 0:
         order.end_date = datetime.fromtimestamp(r['targetEndDate'] / 1000)
     except NameError as e:
         sys.exit('Error {}'.format(e.what()))
-    	
+    
+    article_number = r['articleNumber']     
     d = query('article/?articleNumber-eq={}'.format(article_number)).json()
        
     if 'result' in d and len(d['result']) > 0:
