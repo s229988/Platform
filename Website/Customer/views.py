@@ -28,39 +28,40 @@ def newOrders(request):
     return render(request, 'newOrders.html', {'form': form})
 
 def overview(request):
-    articles = Orders.objects.defer("article_image")
+    customerID = request.user.username
+    articles = Orders.objects.filter(costumer=customerID).defer("article_image")
     return render(request, 'overview.html', {'article_list': articles})
 
 
-class LoginFormView(View):
-    form_class = LoginForm
-    template_name = 'login.html'
-
-    # display blank form
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    # process form data
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-#            user = form.save(commit=False)
-
-            # clean data
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-#            user.set_password(password)
-#            user.save()
-
-            # return User objects if credentials are correct
-            user = auth.authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-
-                    auth.login(request, user)
-                    return redirect('/customer/overview/')
-
-        return render(request, self.template_name, {'form': form})
+# class LoginFormView(View):
+#     form_class = LoginForm
+#     template_name = 'login.html'
+#
+#     # display blank form
+#     def get(self, request):
+#         form = self.form_class(None)
+#         return render(request, self.template_name, {'form': form})
+#
+#     # process form data
+#     def post(self, request):
+#         form = self.form_class(request.POST)
+#
+#         if form.is_valid():
+# #            user = form.save(commit=False)
+#
+#             # clean data
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+# #            user.set_password(password)
+# #            user.save()
+#
+#             # return User objects if credentials are correct
+#             user = auth.authenticate(username=username, password=password)
+#
+#             if user is not None:
+#                 if user.is_active:
+#
+#                     auth.login(request, user)
+#                     return redirect('/customer/overview/')
+#
+#         return render(request, self.template_name, {'form': form})
