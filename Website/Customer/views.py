@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.template import loader
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
 from django.views import generic
 from django.views.generic import View
 
 from .forms import CustomerForm, LoginForm
 from .models import Orders
+
+def redirect(request):
+    return HttpResponseRedirect('/customer/overview')
 
 def newOrders(request):
     # if this is a POST request we need to process the form data
@@ -20,12 +23,16 @@ def newOrders(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/customer/')
+            return HttpResponseRedirect('/customer/newOrders')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CustomerForm()
-    return render(request, 'newOrders.html', {'form': form})
+
+    customerID = request.user.username
+    articles = Orders.objects.filter(costumer=customerID).defer("article_image")
+
+    return render(request, 'newOrders.html', {'form': form, 'article_list': articles})
 
 def overview(request):
     customerID = request.user.username
