@@ -1,0 +1,32 @@
+{% extends 'base_producer.html' %}
+
+{% block body %}
+
+<form action="/producer/capacity" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Hinzufügen" />
+</form>
+<br/>
+<br/>
+
+<div class="container">
+    <table class="table">
+        <thead>
+              <tr>
+                <th>Maschine</th>
+                <th>Verfügbare Kapazität</th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for capacity in capacity_list %}
+                    <tr>
+                      <td>{{ capacity.pk }}</td>
+                      <td>{{ capacity.capacity }}</td>
+                    </tr>
+              {% endfor %}
+            </tbody>
+    </table>
+</div>
+
+{% endblock %}
