@@ -9,6 +9,7 @@ from django.views.generic import View
 from .forms import CustomerForm, LoginForm
 from .models import Orders
 
+
 def redirect(request):
     return HttpResponseRedirect('/customer/overview')
 
@@ -21,7 +22,10 @@ def newOrders(request):
         if form.is_valid():
             formdata = form.cleaned_data['product_ID']
             # process the data in form.cleaned_data as required
-            # ...
+
+
+
+
             # redirect to a new URL:
             return HttpResponseRedirect('/customer/newOrders')
 

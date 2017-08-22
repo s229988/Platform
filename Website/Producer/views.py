@@ -37,7 +37,7 @@ def capacity(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
 
-            machine_id = form.cleaned_data['machine_id']
+            # machine_id = form.cleaned_data['machine_id']
             capa = form.cleaned_data['capacity']
 
             # create new entry in database

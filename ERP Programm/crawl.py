@@ -11,7 +11,7 @@ def query(resource):
         headers={'AuthenticationToken': 'c9e52cb6-95b4-4ae3-b4bb-4cde692f3a4e'}
     )
     return r
-    
+
 costumer_id = 1
 production_number = 1004
 
@@ -32,23 +32,23 @@ if 'result' in d and len(d['result']) > 0:
         order.end_date = datetime.fromtimestamp(r['targetEndDate'] / 1000)
     except NameError as e:
         sys.exit('Error {}'.format(e.what()))
-    
-    article_number = r['articleNumber']     
+
+    article_number = r['articleNumber']
     d = query('article/?articleNumber-eq={}'.format(article_number)).json()
-       
+
     if 'result' in d and len(d['result']) > 0:
         r = d['result'][0]
         article_image_id = r['articleImages'][0]['id']
         order.price_offer = r['articlePrices'][0]['price']
-        
+
         r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_id, article_image_id))
-        
+
         order.article_image = r.content
     else:
         print('No result for article with number', article_number)
 
     costumer.orders.append(order)
-    
+
     session.add(costumer)
     session.commit()
 else:

@@ -2,7 +2,7 @@
 
 <!-- input field -->
 {% block body %}
-<form action="/customer/" method="post">
+<form action="/customer/newOrders/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Hinzufügen" />
