@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from django.template import loader
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.template import loader
 from django.views import generic
 from django.views.generic import View
 
 from .forms import CustomerForm, LoginForm
 from .models import Orders
+
+import subprocess
 
 
 def redirect(request):
@@ -23,8 +25,7 @@ def newOrders(request):
             formdata = form.cleaned_data['product_ID']
             # process the data in form.cleaned_data as required
 
-
-
+            subprocess.call(['python', 'C:/Users/s229988/PycharmProjects/Platform/ERPProgramm/crawl.py', formdata])
 
             # redirect to a new URL:
             return HttpResponseRedirect('/customer/newOrders')
