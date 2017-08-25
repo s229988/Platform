@@ -44,6 +44,7 @@ class Orders(models.Model):
     create_date = models.DateTimeField(blank=True, null=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
+    status = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

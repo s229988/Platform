@@ -2,6 +2,7 @@
 
 {% block body %}
 <div class="container">
+    <h1>Pending</h1>
     <table class="table">
         <thead>
               <tr>
@@ -11,17 +12,100 @@
                 <th>Erstellungsdatum</th>
                 <th>Produktionsstart</th>
                 <th>Produktionsende</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {% for articles in article_list %}
+              {% for articles_pending in articles_pending %}
                 <tr>
-                  <td>{{ articles.article_id }}</td>
-                  <td>{{ articles.amount }}</td>
-                  <td>{{ articles.price_offer}}</td>
-                  <td>{{ articles.create_date }}</td>
-                  <td>{{ articles.start_date }}</td>
-                  <td>{{ articles.end_date }}</td>
+                  <td>{{ articles_pending.article_id }}</td>
+                  <td>{{ articles_pending.amount }}</td>
+                  <td>{{ articles_pending.price_offer}}</td>
+                  <td>{{ articles_pending.create_date }}</td>
+                  <td>{{ articles_pending.start_date }}</td>
+                  <td>{{ articles_pending.end_date }}</td>
+                  <td>{{ articles_pending.status }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+    </table>
+     <h1>In production</h1>
+    <table class="table">
+        <thead>
+              <tr>
+                <th>Artikel</th>
+                <th>Anzahl</th>
+                <th>Preis</th>
+                <th>Erstellungsdatum</th>
+                <th>Produktionsstart</th>
+                <th>Produktionsende</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for articles_inproduction in articles_inproduction %}
+                <tr>
+                  <td>{{ articles_inproduction.article_id }}</td>
+                  <td>{{ articles_inproduction.amount }}</td>
+                  <td>{{ articles_inproduction.price_offer}}</td>
+                  <td>{{ articles_inproduction.create_date }}</td>
+                  <td>{{ articles_inproduction.start_date }}</td>
+                  <td>{{ articles_inproduction.end_date }}</td>
+                  <td>{{ articles_inproduction.status }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+    </table>
+         <h1>Not matched</h1>
+    <table class="table">
+        <thead>
+              <tr>
+                <th>Artikel</th>
+                <th>Anzahl</th>
+                <th>Preis</th>
+                <th>Erstellungsdatum</th>
+                <th>Produktionsstart</th>
+                <th>Produktionsende</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for articles_notmatched in articles_notmatched %}
+                <tr>
+                  <td>{{ articles_notmatched.article_id }}</td>
+                  <td>{{ articles_notmatched.amount }}</td>
+                  <td>{{ articles_notmatched.price_offer}}</td>
+                  <td>{{ articles_notmatched.create_date }}</td>
+                  <td>{{ articles_notmatched.start_date }}</td>
+                  <td>{{ articles_notmatched.end_date }}</td>
+                  <td>{{ articles_notmatched.status }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+    </table>
+         <h1>Done</h1>
+    <table class="table">
+        <thead>
+              <tr>
+                <th>Artikel</th>
+                <th>Anzahl</th>
+                <th>Preis</th>
+                <th>Erstellungsdatum</th>
+                <th>Produktionsstart</th>
+                <th>Produktionsende</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for articles_done in articles_done %}
+                <tr>
+                  <td>{{ articles_done.article_id }}</td>
+                  <td>{{ articles_done.amount }}</td>
+                  <td>{{ articles_done.price_offer}}</td>
+                  <td>{{ articles_done.create_date }}</td>
+                  <td>{{ articles_done.start_date }}</td>
+                  <td>{{ articles_done.end_date }}</td>
+                  <td>{{ articles_done.status }}</td>
                 </tr>
               {% endfor %}
             </tbody>

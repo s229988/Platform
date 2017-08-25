@@ -41,8 +41,12 @@ def newOrders(request):
 
 def overview(request):
     customerID = request.user.username
-    articles = Orders.objects.filter(costumer=customerID).defer("article_image")
-    return render(request, 'overview.html', {'article_list': articles})
+    articles_pending = Orders.objects.filter(costumer=customerID, status="pending").defer("article_image")
+    articles_inproduction = Orders.objects.filter(costumer=customerID, status="in production").defer("article_image")
+    articles_notmatched = Orders.objects.filter(costumer=customerID, status="not matched").defer("article_image")
+    articles_done = Orders.objects.filter(costumer=customerID, status="done").defer("article_image")
+
+    return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_notmatched': articles_notmatched, 'articles_done': articles_done})
 
 
 # class LoginFormView(View):
