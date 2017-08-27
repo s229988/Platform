@@ -9,7 +9,7 @@ def matching(request):
     if request.method == 'POST':
 
         # call matching script
-        subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/matching2.py"])
+        subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/matching.py"])
         # send mail
         subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/sendmail.py"])
 
