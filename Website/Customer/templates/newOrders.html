@@ -10,8 +10,8 @@
 <br/>
 <br/>
 
-
 <div class="container">
+    <h1>Pending</h1>
     <table class="table">
         <thead>
               <tr>
@@ -22,22 +22,24 @@
                 <th>Produktionsstart</th>
                 <th>Produktionsende</th>
                 <th>Status</th>
+                <th>Löschen</th>
               </tr>
             </thead>
             <tbody>
-                {% for articles in article_list %}
-                    <tr>
-                      <td>{{ articles.article_id }}</td>
-                      <td>{{ articles.amount }}</td>
-                      <td>{{ articles.price_offer}}</td>
-                      <td>{{ articles.create_date }}</td>
-                      <td>{{ articles.start_date }}</td>
-                      <td>{{ articles.end_date }}</td>
-                      <td>{{ articles.status }}</td>
-                    </tr>
+              {% for articles_pending in articles_pending %}
+                <tr>
+                  <td>{{ articles_pending.article_id }}</td>
+                  <td>{{ articles_pending.amount }}</td>
+                  <td>{{ articles_pending.price_offer}}</td>
+                  <td>{{ articles_pending.create_date }}</td>
+                  <td>{{ articles_pending.start_date }}</td>
+                  <td>{{ articles_pending.end_date }}</td>
+                  <td>{{ articles_pending.status }}</td>
+                  <td><a class="glyphicon glyphicon-trash" href="{% url 'delete_item' item_id=articles_pending.pk %}"></a></td>
+                </tr>
               {% endfor %}
             </tbody>
-          </table>
+    </table>
 </div>
 
 {% endblock %}

@@ -35,9 +35,9 @@ def newOrders(request):
         form = CustomerForm()
 
     customerID = request.user.username
-    articles = Orders.objects.filter(customer=customerID).defer("article_image")
+    articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_image")
 
-    return render(request, 'newOrders.html', {'form': form, 'article_list': articles})
+    return render(request, 'newOrders.html', {'form': form, 'articles_pending': articles_pending})
 
 def overview(request):
     customerID = request.user.username
@@ -47,6 +47,14 @@ def overview(request):
     articles_done = Orders.objects.filter(customer=customerID, status="done").defer("article_image")
 
     return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_notmatched': articles_notmatched, 'articles_done': articles_done})
+
+
+
+
+def delete_item(request, item_id):
+    customerID = request.user.username
+    articles_deleted = Orders.objects.filter(customer=customerID, pk=item_id).delete()
+    return HttpResponseRedirect('/customer/newOrders')
 
 
 # class LoginFormView(View):
