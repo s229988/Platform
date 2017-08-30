@@ -11,3 +11,5 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+#https://stackoverflow.com/questions/31291611/restricting-user-access-to-different-apps-in-django

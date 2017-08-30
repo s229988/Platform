@@ -13,10 +13,16 @@ def assignments(request):
     producerID = request.user.username
 
     cursor = connection.cursor()
-    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, m.id, o.create_date, o.start_date, o.end_date, m.status FROM orders o, producers p, machines ma, matches m WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id GROUP BY m.id", [producerID])
-    articles = cursor.fetchall()
+    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, o.create_date, o.start_date, o.end_date, o.status FROM orders o WHERE o.status = 'pending'")
+    articles_pending = cursor.fetchall()
 
-    context = {"article_list": articles}
+    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, ma.id, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' GROUP BY m.id", [producerID])
+    articles_inproduction = cursor.fetchall()
+
+    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, ma.id, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' GROUP BY m.id", [producerID])
+    articles_done = cursor.fetchall()
+
+    context = {"articles_pending": articles_pending, "articles_inproduction": articles_inproduction,  "articles_done": articles_done }
 
     # machines = Machines.objects.filter(producer=1)
     # matches = Matches.objects.filter(machine=machines)

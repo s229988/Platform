@@ -35,16 +35,16 @@ def newOrders(request):
         form = CustomerForm()
 
     customerID = request.user.username
-    articles = Orders.objects.filter(costumer=customerID).defer("article_image")
+    articles = Orders.objects.filter(customer=customerID).defer("article_image")
 
     return render(request, 'newOrders.html', {'form': form, 'article_list': articles})
 
 def overview(request):
     customerID = request.user.username
-    articles_pending = Orders.objects.filter(costumer=customerID, status="pending").defer("article_image")
-    articles_inproduction = Orders.objects.filter(costumer=customerID, status="in production").defer("article_image")
-    articles_notmatched = Orders.objects.filter(costumer=customerID, status="not matched").defer("article_image")
-    articles_done = Orders.objects.filter(costumer=customerID, status="done").defer("article_image")
+    articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_image")
+    articles_inproduction = Orders.objects.filter(customer=customerID, status="in production").defer("article_image")
+    articles_notmatched = Orders.objects.filter(customer=customerID, status="not matched").defer("article_image")
+    articles_done = Orders.objects.filter(customer=customerID, status="done").defer("article_image")
 
     return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_notmatched': articles_notmatched, 'articles_done': articles_done})
 

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class Costumers(models.Model):
+class Customers(models.Model):
     companyname = models.CharField(max_length=100, blank=True, null=True)
     streetname = models.CharField(max_length=100, blank=True, null=True)
     streetnumber = models.CharField(max_length=100, blank=True, null=True)
@@ -12,7 +12,7 @@ class Costumers(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'costumers'
+        db_table = 'customers'
 
 
 class Machines(models.Model):
@@ -36,7 +36,7 @@ class Matches(models.Model):
 
 
 class Orders(models.Model):
-    costumer = models.ForeignKey(Costumers, models.DO_NOTHING)
+    customer = models.ForeignKey(Customers, models.DO_NOTHING)
     article_id = models.IntegerField(blank=True, null=True)
     article_image = models.TextField(blank=True, null=True)
     amount = models.IntegerField(blank=True, null=True)

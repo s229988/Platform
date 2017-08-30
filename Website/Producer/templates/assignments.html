@@ -1,0 +1,92 @@
+{% extends 'base_producer.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Pending</h1>
+        <table class="table">
+            <thead>
+                  <tr>
+                    <th>Artikel</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+                    <th>Erstellungsdatum</th>
+                    <th>Produktionsstart</th>
+                    <th>Produktionsende</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in articles_pending %}
+                        <tr>
+                          <td>{{ item.0 }}</td>
+                          <td>{{ item.1 }}</td>
+                          <td>{{ item.2 }}</td>
+                          <td>{{ item.3 }}</td>
+                          <td>{{ item.4 }}</td>
+                          <td>{{ item.5 }}</td>
+                          <td>{{ item.6 }}</td>
+                        </tr>
+                  {% endfor %}
+                </tbody>
+        </table>
+     <h1>In production</h1>
+        <table class="table">
+            <thead>
+                  <tr>
+                    <th>Artikel</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+                    <th>Maschine</th>
+                    <th>Erstellungsdatum</th>
+                    <th>Produktionsstart</th>
+                    <th>Produktionsende</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in articles_inproduction %}
+                        <tr>
+                          <td>{{ item.0 }}</td>
+                          <td>{{ item.1 }}</td>
+                          <td>{{ item.2 }}</td>
+                          <td>{{ item.3 }}</td>
+                          <td>{{ item.4 }}</td>
+                          <td>{{ item.5 }}</td>
+                          <td>{{ item.6 }}</td>
+                          <td>{{ item.7 }}</td>
+                        </tr>
+                  {% endfor %}
+                </tbody>
+        </table>
+     <h1>Done</h1>
+        <table class="table">
+            <thead>
+                  <tr>
+                    <th>Artikel</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+                    <th>Maschine</th>
+                    <th>Erstellungsdatum</th>
+                    <th>Produktionsstart</th>
+                    <th>Produktionsende</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in articles_done %}
+                        <tr>
+                          <td>{{ item.0 }}</td>
+                          <td>{{ item.1 }}</td>
+                          <td>{{ item.2 }}</td>
+                          <td>{{ item.3 }}</td>
+                          <td>{{ item.4 }}</td>
+                          <td>{{ item.5 }}</td>
+                          <td>{{ item.6 }}</td>
+                          <td>{{ item.7 }}</td>
+                        </tr>
+                  {% endfor %}
+                </tbody>
+        </table>
+</div>
+
+{% endblock %}
