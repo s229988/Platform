@@ -56,7 +56,7 @@
               {% endfor %}
             </tbody>
     </table>
-         <h1>Not matched</h1>
+         <h1>No match</h1>
     <table class="table">
         <thead>
               <tr>
@@ -70,15 +70,15 @@
               </tr>
             </thead>
             <tbody>
-              {% for articles_notmatched in articles_notmatched %}
+              {% for articles_nomatch in articles_nomatch %}
                 <tr>
-                  <td>{{ articles_notmatched.article_id }}</td>
-                  <td>{{ articles_notmatched.amount }}</td>
-                  <td>{{ articles_notmatched.price_offer}}</td>
-                  <td>{{ articles_notmatched.create_date }}</td>
-                  <td>{{ articles_notmatched.start_date }}</td>
-                  <td>{{ articles_notmatched.end_date }}</td>
-                  <td>{{ articles_notmatched.status }}</td>
+                  <td>{{ articles_nomatch.article_id }}</td>
+                  <td>{{ articles_nomatch.amount }}</td>
+                  <td>{{ articles_nomatch.price_offer}}</td>
+                  <td>{{ articles_nomatch.create_date }}</td>
+                  <td>{{ articles_nomatch.start_date }}</td>
+                  <td>{{ articles_nomatch.end_date }}</td>
+                  <td>{{ articles_nomatch.status }}</td>
                 </tr>
               {% endfor %}
             </tbody>

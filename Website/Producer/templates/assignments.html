@@ -53,7 +53,17 @@
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
-                          <td>{{ item.7 }}</td>
+                          <td>
+                            <div class="btn-group">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="changestatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.7 }}<span class="caret"></span></button>
+                                <ul class="dropdown-menu" aria-labelledby="changestatus">
+                                    <li><a href="{% url 'change_status' item_id=item.8 new_status=1 %}">pending</a></li>
+                                    <li><a href="{% url 'change_status' item_id=item.8 new_status=2 %}">done</a></li>
+                                </ul>
+                            </div>
+
+
+                          </td>
                         </tr>
                   {% endfor %}
                 </tbody>

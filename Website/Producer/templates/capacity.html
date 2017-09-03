@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form action="/producer/capacity" method="post">
+<form action="/producer/capacity/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Hinzufügen" />
@@ -22,7 +22,13 @@
                {% for capacity in capacity_list %}
                     <tr>
                       <td>{{ capacity.pk }}</td>
-                      <td>{{ capacity.capacity }}</td>
+                      <td>
+                          <form action="{% url 'change_capacity' machine_id=capacity.pk %}" method="post">{% csrf_token %}
+                          <input type="number" name=new_capacity id="new_capacity" step="1" value="{{capacity.capacity}}" />
+                          <input type="submit" value="Change"/>
+                          </form>
+                      </td>
+                      <td><a class="glyphicon glyphicon-trash" href="{% url 'delete_machine' machine_id=capacity.pk %}"></a></td>
                     </tr>
               {% endfor %}
             </tbody>

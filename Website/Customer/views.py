@@ -43,17 +43,14 @@ def overview(request):
     customerID = request.user.username
     articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_image")
     articles_inproduction = Orders.objects.filter(customer=customerID, status="in production").defer("article_image")
-    articles_notmatched = Orders.objects.filter(customer=customerID, status="not matched").defer("article_image")
+    articles_nomatch = Orders.objects.filter(customer=customerID, status="no match").defer("article_image")
     articles_done = Orders.objects.filter(customer=customerID, status="done").defer("article_image")
 
-    return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_notmatched': articles_notmatched, 'articles_done': articles_done})
-
-
+    return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_nomatch': articles_nomatch, 'articles_done': articles_done})
 
 
 def delete_item(request, item_id):
-    customerID = request.user.username
-    articles_deleted = Orders.objects.filter(customer=customerID, pk=item_id).delete()
+    articles_deleted = Orders.objects.filter(pk=item_id).delete()
     return HttpResponseRedirect('/customer/newOrders')
 
 
