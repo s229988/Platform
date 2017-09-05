@@ -10589,3 +10589,79 @@ starttime[17,2]           19
 starttime[17,3]           19 
 starttime[18,2]           19 
 starttime[18,3]           19 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/05/17 11:25:29
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 179 rows, 132 columns and 776 nonzeros
+Variable types: 88 continuous, 44 integer (44 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [3e+01, 5e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Found heuristic solution: objective -0
+Presolve removed 164 rows and 104 columns
+Presolve time: 0.26s
+Presolved: 15 rows, 28 columns, 66 nonzeros
+Variable types: 0 continuous, 28 integer (28 binary)
+
+Root relaxation: objective 3.200000e+02, 19 iterations, 0.14 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0     320.0000000  320.00000  0.00%     -    0s
+
+Explored 0 nodes (19 simplex iterations) in 0.77 seconds
+Thread count was 2 (of 2 available processors)
+
+Solution count 2: 320 -0 
+Pool objective bound 320
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.200000000000e+02, best bound 3.200000000000e+02, gap 0.0000%
+
+    Variable            x 
+-------------------------
+      x[5,2]            1 
+     x[6,10]            1 
+     x[9,11]            1 
+     x[10,8]            1 
+     x[17,2]            1 
+    x[18,11]            1 
+     x[19,8]            1 
+endtime[5,2]           10 
+endtime[6,2]           10 
+endtime[6,10]           18 
+endtime[7,2]           10 
+endtime[7,10]           18 
+endtime[8,2]           10 
+endtime[8,10]           18 
+endtime[9,2]           10 
+endtime[9,10]           18 
+endtime[9,11]           19 
+endtime[10,2]           10 
+endtime[10,8]           20 
+endtime[10,10]           18 
+endtime[10,11]           19 
+endtime[17,2]           19 
+endtime[18,2]           19 
+endtime[18,11]           20 
+endtime[19,2]           19 
+endtime[19,8]           20 
+endtime[19,11]           20 
+starttime[6,2]           10 
+starttime[7,2]           10 
+starttime[7,10]           18 
+starttime[8,2]           10 
+starttime[8,10]           18 
+starttime[9,2]           10 
+starttime[9,10]           18 
+starttime[10,2]           10 
+starttime[10,10]           18 
+starttime[10,11]           19 
+starttime[18,2]           19 
+starttime[19,2]           19 
+starttime[19,11]           20 

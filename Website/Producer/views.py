@@ -15,6 +15,7 @@ def assignments(request):
     producerID = request.user.username
 
     cursor = connection.cursor()
+
     cursor.execute("SELECT o.article_id, o.amount, o.price_offer, o.create_date, o.start_date, o.end_date, o.status FROM orders o WHERE o.status = 'pending'")
     articles_pending = cursor.fetchall()
 
@@ -52,8 +53,6 @@ def capacity(request):
             producerKey = Producers.objects.get(pk=producerID)
             newCapa = Machines(producer=producerKey, capacity=capa, price=0)
             newCapa.save()
-
-
 
             # redirect to a new URL:
             return HttpResponseRedirect('/producer/capacity')
