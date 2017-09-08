@@ -10,22 +10,31 @@
 <br/>
 <br/>
 
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+
 <div class="container">
     <table class="table">
         <thead>
               <tr>
                 <th>Maschine</th>
-                <th>Verfügbare Kapazität</th>
+                <th>Kapazität</th>
               </tr>
             </thead>
             <tbody>
                {% for capacity in capacity_list %}
                     <tr>
-                      <td>{{ capacity.pk }}</td>
+                      <td>{{ capacity.machinename }}</td>
                       <td>
                           <form action="{% url 'change_capacity' machine_id=capacity.pk %}" method="post">{% csrf_token %}
-                          <input type="number" name=new_capacity id="new_capacity" step="1" value="{{capacity.capacity}}" />
-                          <input type="submit" value="Change"/>
+                          <input type="number" name=new_capacity id="new_capacity" step="1" value="{{capacity.capacity}}" style="width: 5em;" />
+                          <input type="submit" value="Save"/>
                           </form>
                       </td>
                       <td><a class="glyphicon glyphicon-trash" href="{% url 'delete_machine' machine_id=capacity.pk %}"></a></td>

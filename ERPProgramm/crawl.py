@@ -12,8 +12,8 @@ def query(resource):
     return r
 
 
-customer_id = 1
 production_number = sys.argv[1]
+customer_id = sys.argv[2]
 
 d = query('productionOrder/?productionOrderNumber-eq={}'.format(production_number)).json()
 
@@ -39,12 +39,12 @@ if 'result' in d and len(d['result']) > 0:
 
     if 'result' in d and len(d['result']) > 0:
         r = d['result'][0]
-        article_image_id = r['articleImages'][0]['id']
+        article_file_id = r['articleImages'][0]['id']
         order.price_offer = r['articlePrices'][0]['price']
 
-        r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_id, article_image_id))
+        r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_id, article_file_id))
 
-        order.article_image = r.content
+        order.article_file = r.content
     else:
         print('No result for article with number', article_number)
 
@@ -53,5 +53,7 @@ if 'result' in d and len(d['result']) > 0:
     session.add(customer)
     session.commit()
 else:
-    print('No result for production order with article number', article_number)
+    print('No result for production order with production number', production_number)
+    raise Exception(production_number)
+
 

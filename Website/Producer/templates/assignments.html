@@ -9,6 +9,7 @@
                     <th>Artikel</th>
                     <th>Anzahl</th>
                     <th>Preis</th>
+                    <th>Kunde</th>
                     <th>Erstellungsdatum</th>
                     <th>Produktionsstart</th>
                     <th>Produktionsende</th>
@@ -25,6 +26,7 @@
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
+                          <td>{{ item.7 }}</td>
                         </tr>
                   {% endfor %}
                 </tbody>
@@ -36,6 +38,7 @@
                     <th>Artikel</th>
                     <th>Anzahl</th>
                     <th>Preis</th>
+                    <th>Kunde</th>
                     <th>Maschine</th>
                     <th>Erstellungsdatum</th>
                     <th>Produktionsstart</th>
@@ -53,12 +56,13 @@
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
+                          <td>{{ item.7 }}</td>
                           <td>
                             <div class="btn-group">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="changestatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.7 }}<span class="caret"></span></button>
-                                <ul class="dropdown-menu" aria-labelledby="changestatus">
-                                    <li><a href="{% url 'change_status' item_id=item.8 new_status=1 %}">pending</a></li>
-                                    <li><a href="{% url 'change_status' item_id=item.8 new_status=2 %}">done</a></li>
+                                <button class="btn btn-default dropdown-toggle" type="button" id="safestatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.8 }}<span class="caret"></span></button>
+                                <ul class="dropdown-menu" aria-labelledby="safestatus">
+                                    <li><a href="{% url 'safe_status' item_id=item.9 new_status=1 %}">pending</a></li>
+                                    <li><a href="{% url 'safe_status' item_id=item.9 new_status=2 %}">done</a></li>
                                 </ul>
                             </div>
 
@@ -74,6 +78,7 @@
                   <tr>
                     <th>Artikel</th>
                     <th>Anzahl</th>
+                    <th>Preis</th>
                     <th>Preis</th>
                     <th>Maschine</th>
                     <th>Erstellungsdatum</th>
@@ -93,6 +98,7 @@
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
                           <td>{{ item.7 }}</td>
+                          <td>{{ item.8 }}</td>
                         </tr>
                   {% endfor %}
                 </tbody>

@@ -29,7 +29,6 @@ class Producer(Base):
     city = Column(String(100))
     postalcode = Column(Integer)
     email = Column(String(100))
-    number_machines = Column(Integer)
     machines = relationship('Machines')
     
     def __repr__(self):
@@ -41,7 +40,7 @@ class Order(Base):
     id = Column(Integer, primary_key=True)
     customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
     article_id = Column(Integer)
-    article_image = Column(Binary)
+    article_file = Column(Binary)
     amount = Column(Integer)
     price_offer = Column(Float)
     create_date = Column(DateTime)
@@ -58,7 +57,7 @@ class Machines(Base):
     id = Column(Integer, primary_key=True)
     producer_id = Column(Integer, ForeignKey('producers.id'), nullable=False)
     capacity = Column(Integer)
-    price = Column(Float)
+    machinename = Column(String(100))
     
     def __repr__(self):
         return "<Machines(id={}".format(self.id, self.capacity)

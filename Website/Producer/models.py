@@ -19,7 +19,7 @@ class Customers(models.Model):
 class Machines(models.Model):
     producer = models.ForeignKey('Producers', models.DO_NOTHING)
     capacity = models.IntegerField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
+    machinename = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -59,7 +59,6 @@ class Producers(models.Model):
     city = models.CharField(max_length=100, blank=True, null=True)
     postalcode = models.IntegerField(blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
-    number_machines = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

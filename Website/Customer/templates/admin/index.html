@@ -48,12 +48,33 @@
 {% endif %}
 </div>
 
+<!--Add button for starting matching algorithm-->
 <div>
     <form action="/customer/matching/" method="post">
         {% csrf_token %}
         <input type="submit" value="Start Matching" />
     </form>
 </div>
+
+<!--Table for displaying matching result-->
+<!--<h1>Matching Result</h1>-->
+    <!--<table class="table">-->
+        <!--<thead>-->
+              <!--<tr>-->
+                <!--<th>Artikel</th>-->
+                <!--<th>Anzahl</th>-->
+                <!--<th>Preis</th>-->
+                <!--<th>Kunde</th>-->
+                <!--<th>Produzent</th>-->
+                <!--<th>Maschine</th>-->
+                <!--<th>Erstellungsdatum</th>-->
+                <!--<th>Produktionsstart</th>-->
+                <!--<th>Produktionsende</th>-->
+                <!--<th>Status</th>-->
+              <!--</tr>-->
+        <!--</thead>-->
+    <!--</table>-->
+
 {% endblock %}
 
 {% block sidebar %}
