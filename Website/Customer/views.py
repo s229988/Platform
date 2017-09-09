@@ -18,7 +18,9 @@ def redirect(request):
 
 def newOrders(request):
     customerID = request.user.username
-    # if this is a POST request we need to process the form data
+
+
+        # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = CustomerForm(request.POST)
@@ -28,7 +30,7 @@ def newOrders(request):
             # process the data in form.cleaned_data as required
 
             try:
-                subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/ERPProgramm/crawl.py', formdata, customerID ])
+                subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/ERPProgramm/crawl.py', formdata, customerID])
             except Exception:
                 messages.add_message(request, messages.ERROR,'Die eingegebene Produktionsnummer {} ist nicht vorhanden.'.format(formdata))
             # redirect to a new URL:
@@ -36,8 +38,26 @@ def newOrders(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
+        # get production numbers from ERP
+        production_numbers = subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/ERPProgramm/crawl_prodnr.py', customerID])
+
+        # decode production_numbers
+        production_numbers = production_numbers.decode("utf-8")
+        production_numbers = production_numbers.replace(',', '')
+        production_numbers = production_numbers.replace('[', '')
+        production_numbers = production_numbers.replace(']', '')
+        production_numbers = production_numbers.replace("'", '')
+        production_numbers = production_numbers.split(' ')
+
+        # parse string to int for each value in production_numbers
+        i = 0
+        for item in production_numbers:
+            production_numbers[i] = int(item)
+            i += 1
+
         form = CustomerForm()
 
+        # get all orders with status = pending
         articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_file")
 
     return render(request, 'newOrders.html', {'form': form, 'articles_pending': articles_pending})
