@@ -11,5 +11,5 @@ from django.db import models
 
 class CapacityForm(forms.Form):
 #    machine_id = forms.IntegerField(label='Maschinen-ID')
-    machinename = forms.CharField(label='Name der Maschine')
-    capacity = forms.IntegerField(label='Vorhandene Kapazität')
+    machinename = forms.CharField(label='Machine name ')
+    capacity = forms.IntegerField(label='Available Capacity')

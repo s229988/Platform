@@ -2,7 +2,7 @@
 
 <!-- input field -->
 {% block body %}
-<form action="/customer/newOrders/" method="post" value="10">
+<form action="/customer/newOrders/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Hinzufügen" />
@@ -24,14 +24,14 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Artikel</th>
-                <th>Anzahl</th>
-                <th>Preis</th>
-                <th>Erstellungsdatum</th>
-                <th>Produktionsstart</th>
-                <th>Produktionsende</th>
+                <th>Article</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Create date</th>
+                <th>Target start date</th>
+                <th>Target end date</th>
                 <th>Status</th>
-                <th>Löschen</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -49,8 +49,24 @@
               {% endfor %}
             </tbody>
     </table>
+
+
+    <select>
+        <script language="javascript" type="text/javascript">
+
+        for(var d=1;d<=5;d++)
+        {
+            document.write("<option>"+{{ production_numbers.3 }}+"</option>");
+        }
+        </script>
+    </select>
+
+    <!--https://stackoverflow.com/questions/8859504/django-form-dropdown-list-of-numbers-->
+    <!--https://www.youtube.com/watch?v=2gmS4LAHTOM-->
 </div>
 
-{{ production_numbers.1 }}
+</div>
+
+
 
 {% endblock %}

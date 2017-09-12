@@ -50,7 +50,7 @@ def capacity(request):
                 newCapa = Machines(producer=producerKey, capacity=capa, machinename=name)
                 newCapa.save()
             else:
-                messages.add_message(request, messages.ERROR,'Kapazität darf nicht negativ sein.')
+                messages.add_message(request, messages.ERROR,'The Capacity is not allowed to be negative. Please enter a valid value.')
 
             # redirect to a new URL:
             return HttpResponseRedirect('/producer/capacity')
@@ -82,7 +82,7 @@ def change_capacity(request, machine_id):
             # create new entry in database
             new_capacity = Machines.objects.filter(pk=machine_id).update(capacity=new_capa)
         else:
-            messages.add_message(request, messages.ERROR, 'Kapazität darf nicht negativ sein.')
+            messages.add_message(request, messages.ERROR, 'The Capacity is not allowed to be negative. Please enter a valid value.')
 
     return HttpResponseRedirect('/producer/capacity')
 
@@ -94,7 +94,7 @@ def delete_machine(request, machine_id):
     matches = cursor.fetchall()
 
     if matches[0][0] > 0:
-        messages.add_message(request, messages.ERROR, 'Die ausgewählte Maschine kann nicht gelöscht werden, da bereits Aufträge mit ihr gematched wurden.')
+        messages.add_message(request, messages.ERROR, 'The chosen machine can´t be deleted, because there are ongoing orders matched to this machine.')
     else:
         machine_deleted = Machines.objects.filter(pk=machine_id).delete()
 

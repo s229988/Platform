@@ -7,7 +7,8 @@ from django.urls import reverse_lazy
 
 
 class CustomerForm(forms.Form):
-    product_ID = forms.IntegerField(label='Bitte Produktions-ID eingeben ')
+    product_ID = forms.IntegerField(label='Enter Production Number  ')
+
 
 
 class LoginForm(forms.ModelForm):

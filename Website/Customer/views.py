@@ -32,7 +32,7 @@ def newOrders(request):
             try:
                 subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/ERPProgramm/crawl.py', formdata, customerID])
             except Exception:
-                messages.add_message(request, messages.ERROR,'Die eingegebene Produktionsnummer {} ist nicht vorhanden.'.format(formdata))
+                messages.add_message(request, messages.ERROR,'The production number {} is not available. Please check with your ERP System'.format(formdata))
             # redirect to a new URL:
             return HttpResponseRedirect('/customer/newOrders')
 
@@ -60,7 +60,7 @@ def newOrders(request):
         # get all orders with status = pending
         articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_file")
 
-    return render(request, 'newOrders.html', {'form': form, 'articles_pending': articles_pending})
+    return render(request, 'newOrders.html', {'form': form, 'articles_pending': articles_pending, 'production_numbers': production_numbers})
 
 def overview(request):
     customerID = request.user.username
