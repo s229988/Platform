@@ -3020,3 +3020,49 @@ starttime[10,11]           19
 starttime[18,2]           19 
 starttime[19,2]           19 
 starttime[19,11]           20 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/13/17 12:51:13
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 52 rows, 36 columns and 152 nonzeros
+Variable types: 24 continuous, 12 integer (12 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+04]
+Found heuristic solution: objective -0
+Presolve removed 48 rows and 32 columns
+Presolve time: 0.00s
+Presolved: 4 rows, 4 columns, 8 nonzeros
+Variable types: 0 continuous, 4 integer (4 binary)
+
+Root relaxation: objective 4.198000e+01, 3 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0      41.9800000   41.98000  0.00%     -    0s
+
+Explored 0 nodes (3 simplex iterations) in 0.02 seconds
+Thread count was 2 (of 2 available processors)
+
+Solution count 2: 41.98 -0 
+Pool objective bound 41.98
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.198000000000e+01, best bound 4.198000000000e+01, gap 0.0000%
+
+    Variable            x 
+-------------------------
+    x[27,18]            1 
+    x[30,20]            1 
+endtime[27,18]            2 
+endtime[28,18]            2 
+endtime[29,18]            2 
+endtime[30,18]            2 
+endtime[30,20]            2 
+starttime[28,18]            2 
+starttime[29,18]            2 
+starttime[30,18]            2 

@@ -6,7 +6,8 @@
         <table class="table">
             <thead>
                   <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Customer</th>
@@ -22,11 +23,12 @@
                           <td>{{ item.0 }}</td>
                           <td>{{ item.1 }}</td>
                           <td>{{ item.2 }}</td>
-                          <td>{{ item.3 }}</td>
+                          <td>{{ item.3|floatformat:2 }} €</td>
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
                           <td>{{ item.7 }}</td>
+                          <td>{{ item.8 }}</td>
                         </tr>
                   {% endfor %}
                 </tbody>
@@ -35,11 +37,12 @@
         <table class="table">
             <thead>
                   <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Customer</th>
-                <th>Machine</th>
+                <th>Machine name</th>
                 <th>Create date</th>
                 <th>Target start date</th>
                 <th>Target end date</th>
@@ -52,17 +55,18 @@
                           <td>{{ item.0 }}</td>
                           <td>{{ item.1 }}</td>
                           <td>{{ item.2 }}</td>
-                          <td>{{ item.3 }}</td>
+                          <td>{{ item.3|floatformat:2 }} €</td>
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
                           <td>{{ item.7 }}</td>
+                          <td>{{ item.8 }}</td>
                           <td>
                             <div class="btn-group">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="safestatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.8 }}<span class="caret"></span></button>
+                                <button class="btn btn-default dropdown-toggle" type="button" id="safestatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.9 }}<span class="caret"></span></button>
                                 <ul class="dropdown-menu" aria-labelledby="safestatus">
-                                    <li><a href="{% url 'safe_status' item_id=item.9 new_status=1 %}">pending</a></li>
-                                    <li><a href="{% url 'safe_status' item_id=item.9 new_status=2 %}">done</a></li>
+                                    <li><a href="{% url 'safe_status' item_id=item.10 new_status=1 %}">pending</a></li>
+                                    <li><a href="{% url 'safe_status' item_id=item.10 new_status=2 %}">done</a></li>
                                 </ul>
                             </div>
 
@@ -76,11 +80,12 @@
         <table class="table">
             <thead>
                   <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Customer</th>
-                <th>Machine</th>
+                <th>Machine name</th>
                 <th>Create date</th>
                 <th>Target start date</th>
                 <th>Target end date</th>
@@ -93,12 +98,13 @@
                           <td>{{ item.0 }}</td>
                           <td>{{ item.1 }}</td>
                           <td>{{ item.2 }}</td>
-                          <td>{{ item.3 }}</td>
+                          <td>{{ item.3|floatformat:2 }} €</td>
                           <td>{{ item.4 }}</td>
                           <td>{{ item.5 }}</td>
                           <td>{{ item.6 }}</td>
                           <td>{{ item.7 }}</td>
                           <td>{{ item.8 }}</td>
+                          <td>{{ item.9 }}</td>
                         </tr>
                   {% endfor %}
                 </tbody>

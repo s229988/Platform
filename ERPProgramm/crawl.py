@@ -25,7 +25,7 @@ if 'result' in d and len(d['result']) > 0:
     r = d['result'][0]
     order = db.Order()
     try:
-        order.article_id = r['articleId']
+        order.article_nr = r['articleNumber']
         order.amount = r['targetQuantity']
         order.create_date = datetime.fromtimestamp(r['createdDate'] / 1000)
         order.start_date = datetime.fromtimestamp(r['targetStartDate'] / 1000)
@@ -39,10 +39,10 @@ if 'result' in d and len(d['result']) > 0:
 
     if 'result' in d and len(d['result']) > 0:
         r = d['result'][0]
-        article_file_id = r['articleImages'][0]['id']
+        order.article_file_id = r['articleImages'][0]['id']
         order.price_offer = r['articlePrices'][0]['price']
-
-        r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_id, article_file_id))
+        order.article_name = r['name']
+        r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_nr, order.article_file_id))
 
         order.article_file = r.content
     else:

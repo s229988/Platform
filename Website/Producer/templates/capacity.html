@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form action="/producer/capacity/" method="post">
+<form action="/producer/add_machine/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Hinzufügen" />
@@ -23,7 +23,7 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Maschine</th>
+                <th>Machine</th>
                 <th>Capacity</th>
               </tr>
             </thead>

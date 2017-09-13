@@ -16,13 +16,13 @@ def assignments(request):
 
     cursor = connection.cursor()
 
-    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, c.companyname, o.create_date, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
+    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, o.create_date, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
     articles_pending = cursor.fetchall()
 
-    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, c.companyname, ma.id, o.create_date, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_inproduction = cursor.fetchall()
 
-    cursor.execute("SELECT o.article_id, o.amount, o.price_offer, c.companyname, ma.id, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_done = cursor.fetchall()
 
     context = {"articles_pending": articles_pending, "articles_inproduction": articles_inproduction,  "articles_done": articles_done }
@@ -30,7 +30,7 @@ def assignments(request):
     return render(request, 'assignments.html', context)
 
 
-def capacity(request):
+def add_machine(request):
     producerID = (request.user.username)
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -44,16 +44,21 @@ def capacity(request):
             capa = form.cleaned_data['capacity']
             name = form.cleaned_data['machinename']
 
+            machinenames = Machines.objects.only('machinename')
+
             if capa >= 0:
-                # create new entry in database
-                producerKey = Producers.objects.get(pk=producerID)
-                newCapa = Machines(producer=producerKey, capacity=capa, machinename=name)
-                newCapa.save()
+                if Machines.objects.filter(machinename=name).exists():
+                    messages.add_message(request, messages.ERROR, 'Machine name already used. Please choose another name.')
+                else:
+                    # create new entry in database
+                    producerKey = Producers.objects.get(pk=producerID)
+                    newCapa = Machines(producer=producerKey, capacity=capa, machinename=name)
+                    newCapa.save()
             else:
                 messages.add_message(request, messages.ERROR,'The Capacity is not allowed to be negative. Please enter a valid value.')
 
             # redirect to a new URL:
-            return HttpResponseRedirect('/producer/capacity')
+            return HttpResponseRedirect('/producer/add_machine')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -84,7 +89,7 @@ def change_capacity(request, machine_id):
         else:
             messages.add_message(request, messages.ERROR, 'The Capacity is not allowed to be negative. Please enter a valid value.')
 
-    return HttpResponseRedirect('/producer/capacity')
+    return HttpResponseRedirect('/producer/add_machine')
 
 
 def delete_machine(request, machine_id):
@@ -98,4 +103,4 @@ def delete_machine(request, machine_id):
     else:
         machine_deleted = Machines.objects.filter(pk=machine_id).delete()
 
-    return HttpResponseRedirect('/producer/capacity')
+    return HttpResponseRedirect('/producer/add_machine')

@@ -6,11 +6,6 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 
 
-class CustomerForm(forms.Form):
-    product_ID = forms.IntegerField(label='Enter Production Number  ')
-
-
-
 class LoginForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 

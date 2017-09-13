@@ -6,7 +6,8 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Create date</th>
@@ -18,9 +19,10 @@
             <tbody>
               {% for articles_pending in articles_pending %}
                 <tr>
-                  <td>{{ articles_pending.article_id }}</td>
+                  <td>{{ articles_pending.article_nr }}</td>
+                  <td>{{ articles_pending.article_name }}</td>
                   <td>{{ articles_pending.amount }}</td>
-                  <td>{{ articles_pending.price_offer}}</td>
+                  <td>{{ articles_pending.price_offer|floatformat:2 }} €</td>
                   <td>{{ articles_pending.create_date }}</td>
                   <td>{{ articles_pending.start_date }}</td>
                   <td>{{ articles_pending.end_date }}</td>
@@ -33,7 +35,8 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Create date</th>
@@ -45,9 +48,10 @@
             <tbody>
               {% for articles_inproduction in articles_inproduction %}
                 <tr>
-                  <td>{{ articles_inproduction.article_id }}</td>
+                  <td>{{ articles_inproduction.article_nr }}</td>
+                  <td>{{ articles_inproduction.article_name }}</td>
                   <td>{{ articles_inproduction.amount }}</td>
-                  <td>{{ articles_inproduction.price_offer}}</td>
+                  <td>{{ articles_inproduction.price_offer|floatformat:2 }} €</td>
                   <td>{{ articles_inproduction.create_date }}</td>
                   <td>{{ articles_inproduction.start_date }}</td>
                   <td>{{ articles_inproduction.end_date }}</td>
@@ -60,7 +64,8 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Create date</th>
@@ -72,9 +77,10 @@
             <tbody>
               {% for articles_nomatch in articles_nomatch %}
                 <tr>
-                  <td>{{ articles_nomatch.article_id }}</td>
+                  <td>{{ articles_nomatch.article_nr }}</td>
+                  <td>{{ articles_nomatch.article_name }}</td>
                   <td>{{ articles_nomatch.amount }}</td>
-                  <td>{{ articles_nomatch.price_offer}}</td>
+                  <td>{{ articles_nomatch.price_offer|floatformat:2 }} €</td>
                   <td>{{ articles_nomatch.create_date }}</td>
                   <td>{{ articles_nomatch.start_date }}</td>
                   <td>{{ articles_nomatch.end_date }}</td>
@@ -87,7 +93,8 @@
     <table class="table">
         <thead>
               <tr>
-                <th>Article</th>
+                <th>Nr.</th>
+                <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
                 <th>Create date</th>
@@ -99,9 +106,10 @@
             <tbody>
               {% for articles_done in articles_done %}
                 <tr>
-                  <td>{{ articles_done.article_id }}</td>
+                  <td>{{ articles_done.article_nr }}</td>
+                  <td>{{ articles_done.article_name }}</td>
                   <td>{{ articles_done.amount }}</td>
-                  <td>{{ articles_done.price_offer}}</td>
+                  <td>{{ articles_done.price_offer|floatformat:2 }} €</td>
                   <td>{{ articles_done.create_date }}</td>
                   <td>{{ articles_done.start_date }}</td>
                   <td>{{ articles_done.end_date }}</td>

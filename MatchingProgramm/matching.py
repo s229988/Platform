@@ -72,8 +72,8 @@ model.addConstrs(x.sum(job, '*') <= 1 for job in jobs)
 model.addConstrs(endtime[job, machine] == starttime[job, machine] +
                  x[job, machine] * processingtime[job] for job in jobs for machine in machines)
 
-model.addConstrs(starttime[job+1, machine] == endtime[job, machine]
-                 for job in jobs for machine in machines if job+1 in jobs)
+#model.addConstrs(starttime[job+1, machine] == endtime[job, machine]
+#                 for job in jobs for machine in machines if job+1 in jobs)
 
 # model.addConstrs(starttime[job + 1, machine] == endtime[job, machine]
 #                  for job in jobs for machine in machines if job <= (len(jobs)-1))
