@@ -57,6 +57,10 @@ def newOrders(request):
 
 def overview(request):
     customerID = request.user.username
+
+    subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/checkmail.py'])
+
+
     articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_file")
     articles_inproduction = Orders.objects.filter(customer=customerID, status="in production").defer("article_file")
     articles_nomatch = Orders.objects.filter(customer=customerID, status="no match").defer("article_file")

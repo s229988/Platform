@@ -25,6 +25,7 @@ if 'result' in d and len(d['result']) > 0:
     r = d['result'][0]
     order = db.Order()
     try:
+        order.production_nr = r['productionOrderNumber']
         order.article_nr = r['articleNumber']
         order.amount = r['targetQuantity']
         order.create_date = datetime.fromtimestamp(r['createdDate'] / 1000)

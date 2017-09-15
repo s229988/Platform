@@ -3066,3 +3066,39 @@ endtime[30,20]            2
 starttime[28,18]            2 
 starttime[29,18]            2 
 starttime[30,18]            2 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/15/17 10:51:49
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 14 rows, 12 columns and 28 nonzeros
+Variable types: 8 continuous, 4 integer (4 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+01]
+Found heuristic solution: objective -0
+Presolve removed 14 rows and 12 columns
+Presolve time: 0.14s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.28 seconds
+Thread count was 1 (of 2 available processors)
+
+Solution count 1: 41.98 
+Pool objective bound 41.98
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.198000000000e+01, best bound 4.198000000000e+01, gap 0.0000%
+
+    Variable            x 
+-------------------------
+    x[31,18]            1 
+    x[32,18]            1 
+endtime[31,18]           16 
+endtime[31,20]           16 
+endtime[32,18]            9 
+endtime[32,20]            9 
+starttime[31,20]           16 
+starttime[32,20]            9 

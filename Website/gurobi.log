@@ -11730,3 +11730,73 @@ starttime[27,18]            2
 starttime[28,18]           16 
 starttime[29,18]            9 
 starttime[30,18]            2 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/15/17 11:06:44
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 21 rows, 18 columns and 48 nonzeros
+Variable types: 12 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 9e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+01]
+Found heuristic solution: objective -0
+Presolve removed 21 rows and 18 columns
+Presolve time: 0.25s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.32 seconds
+Thread count was 1 (of 2 available processors)
+
+Solution count 1: 62.97 
+Pool objective bound 62.97
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.297000000000e+01, best bound 6.297000000000e+01, gap 0.0000%
+
+    Variable            x 
+-------------------------
+    x[33,18]            1 
+    x[34,20]            1 
+    x[35,18]            1 
+endtime[33,18]            9 
+endtime[33,20]            9 
+endtime[34,18]            9 
+endtime[34,20]            9 
+endtime[35,18]            9 
+endtime[35,20]            9 
+starttime[33,20]            9 
+starttime[34,18]            9 
+starttime[35,20]            9 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/15/17 11:59:07
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 4 rows, 3 columns and 6 nonzeros
+Variable types: 2 continuous, 1 integer (1 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Found heuristic solution: objective -0
+Presolve removed 4 rows and 3 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.07 seconds
+Thread count was 1 (of 2 available processors)
+
+Solution count 1: 20.99 
+Pool objective bound 20.99
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.099000000000e+01, best bound 2.099000000000e+01, gap 0.0000%
+
+    Variable            x 
+-------------------------
+      x[1,1]            1 
+endtime[1,1]            2 

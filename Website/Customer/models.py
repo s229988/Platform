@@ -37,6 +37,7 @@ class Matches(models.Model):
 
 class Orders(models.Model):
     customer = models.ForeignKey(Customers, models.DO_NOTHING)
+    production_nr = models.IntegerField(blank=True, null=True)
     article_nr = models.IntegerField(blank=True, null=True)
     article_name = models.TextField(blank=True, null=True)
     article_file = models.TextField(blank=True, null=True)

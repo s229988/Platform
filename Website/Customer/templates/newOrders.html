@@ -26,7 +26,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nr.</th>
+                <th>Production nr.</th>
+                <th>Article nr.</th>
                 <th>Article name</th>
                 <th>Amount</th>
                 <th>Price</th>
@@ -40,6 +41,7 @@
         <tbody>
             {% for articles_pending in articles_pending %}
             <tr>
+                <td>{{ articles_pending.production_nr }}</td>
                 <td>{{ articles_pending.article_nr }}</td>
                 <td>{{ articles_pending.article_name }}</td>
                 <td>{{ articles_pending.amount }}</td>

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.db import connection
 from django.shortcuts import render_to_response
 from django.contrib import messages
+import subprocess
 
 from .models import Orders, Machines, Matches, Producers
 from .forms import CapacityForm
@@ -14,15 +15,18 @@ def redirect(request):
 def assignments(request):
     producerID = request.user.username
 
+    subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/checkmail.py'])
+
+
     cursor = connection.cursor()
 
-    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, o.create_date, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, o.create_date, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
     articles_pending = cursor.fetchall()
 
-    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_inproduction = cursor.fetchall()
 
-    cursor.execute("SELECT o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_done = cursor.fetchall()
 
     context = {"articles_pending": articles_pending, "articles_inproduction": articles_inproduction,  "articles_done": articles_done }
