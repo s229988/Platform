@@ -6,6 +6,7 @@ from django.template import loader
 from django.views import generic
 from django.views.generic import View
 from django.contrib import messages
+from django.db import connection
 
 from .forms import LoginForm
 from .models import Orders
@@ -44,11 +45,29 @@ def newOrders(request):
     production_numbers = production_numbers.replace("'", '')
     production_numbers = production_numbers.split(' ')
 
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT  o.production_nr FROM orders o WHERE o.status='pending'")
+    production_nr_existing = cursor.fetchall()
+
     # parse string to int for each value in production_numbers
     i = 0
     for item in production_numbers:
         production_numbers[i] = int(item)
         i += 1
+
+    # Check if production_numbers is already in table orders
+    i = 0
+    for item in production_numbers:
+        z = 0
+        for items in production_nr_existing:
+            if production_numbers[i] in production_nr_existing[z-1]:
+                production_numbers.remove(item)
+            z += 1
+        i += 1
+
+
+
 
     # get all orders with status = pending
     articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_file")
