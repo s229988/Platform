@@ -17,6 +17,9 @@ import subprocess
 def redirect(request):
     return HttpResponseRedirect('/customer/overview')
 
+def redirectStartpage(request):
+    return HttpResponseRedirect('/customer/login')
+
 def newOrders(request):
     customerID = request.user.username
     pnr = request.POST.get('dropdown')

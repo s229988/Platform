@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views, admin
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout
+
 
 urlpatterns = [
     url(r'^$', login, {'template_name': 'login.html'}, name='login'),
@@ -10,4 +11,6 @@ urlpatterns = [
     url(r'^login/redirect/$', views.redirect, name='redirect'),
     url(r'^matching/$', admin.matching, name='redirect'),
     url(r'^newOrders/(?P<item_id>[0-9]+)/$', views.delete_item, name="delete_item"),
+    url(r'^logout/$', logout, name="logout"),
+    url(r'^logout/redirect/$', views.redirectStartpage, name='redirectStartpage'),
 ]

@@ -4,10 +4,10 @@ import requests
 headers = {'AuthenticationToken': 'c9e52cb6-95b4-4ae3-b4bb-4cde692f3a4e', 'Content-type': 'application/json'}
 url_base = 'http://10.105.11.20:8080/webapp/api/v1/'
 
-article_nr = 6518
+article_id = 6518
 new_price = 667.77
 
-url = url_base + 'article/id/{}'.format(article_nr)
+url = url_base + 'article/id/{}'.format(article_id)
 
 
 # Get the article

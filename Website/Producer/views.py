@@ -12,6 +12,9 @@ from .forms import CapacityForm
 def redirect(request):
     return HttpResponseRedirect('/producer/assignments')
 
+def redirectStartpage(request):
+    return HttpResponseRedirect('/producer/login')
+
 def assignments(request):
     producerID = request.user.username
 

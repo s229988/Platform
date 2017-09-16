@@ -132,6 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'redirect/'
+LOGOUT_REDIRECT_URL = 'redirect/'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
