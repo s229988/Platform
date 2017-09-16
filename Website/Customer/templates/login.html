@@ -2,10 +2,10 @@
 
 <!-- input field -->
 {% block body %}
-<form method="post">
+<form class="container" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-   <br/> <input type="submit" value="Login" />
+   <br/> <input type="submit" value="Login" class="btn myButton" />
 </form>
 <br/>
 <br/>

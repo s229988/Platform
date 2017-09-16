@@ -43,6 +43,7 @@ class Order(Base):
     id = Column(Integer, primary_key=True)
     customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
     production_nr = Column(Integer)
+    article_id = Column(Integer)
     article_nr = Column(Integer)
     article_name = Column(String(100))
     article_file = Column(Binary)

@@ -2,10 +2,10 @@
 
 {% block body %}
 
-<form action="/producer/add_machine/" method="post">
+<form class="container" action="/producer/add_machine/" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Hinzufügen" />
+    <input class="btn btn-success myButton" type="submit" value="Hinzufügen" />
 </form>
 <br/>
 <br/>
@@ -25,6 +25,7 @@
               <tr>
                 <th>Machine</th>
                 <th>Capacity</th>
+                  <th class="td-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -34,10 +35,10 @@
                       <td>
                           <form action="{% url 'change_capacity' machine_id=capacity.pk %}" method="post">{% csrf_token %}
                           <input type="number" name=new_capacity id="new_capacity" step="1" value="{{capacity.capacity}}" style="width: 5em;" />
-                          <input type="submit" value="Save"/>
+                          <input class="btn btn-success myButton" type="submit" value="Save"/>
                           </form>
                       </td>
-                      <td><a class="glyphicon glyphicon-trash" href="{% url 'delete_machine' machine_id=capacity.pk %}"></a></td>
+                      <td class="td-center"><a class="glyphicon glyphicon-trash" href="{% url 'delete_machine' machine_id=capacity.pk %}"></a></td>
                     </tr>
               {% endfor %}
             </tbody>

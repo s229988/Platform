@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
+
 <div class="container">
     <h1>Pending</h1>
     <table class="table">
@@ -64,38 +66,7 @@
               {% endfor %}
             </tbody>
     </table>
-         <h1>No match</h1>
-    <table class="table">
-        <thead>
-              <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for articles_nomatch in articles_nomatch %}
-                <tr>
-                  <td>{{ articles_nomatch.production_nr }}</td>
-                  <td>{{ articles_nomatch.article_nr }}</td>
-                  <td>{{ articles_nomatch.article_name }}</td>
-                  <td>{{ articles_nomatch.amount }}</td>
-                  <td>{{ articles_nomatch.price_offer|floatformat:2 }} €</td>
-                  <td>{{ articles_nomatch.create_date }}</td>
-                  <td>{{ articles_nomatch.start_date }}</td>
-                  <td>{{ articles_nomatch.end_date }}</td>
-                  <td>{{ articles_nomatch.status }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-    </table>
-         <h1>Done</h1>
+        <h1>Done</h1>
     <table class="table">
         <thead>
               <tr>
@@ -126,5 +97,39 @@
               {% endfor %}
             </tbody>
     </table>
+     <h1>No match</h1>
+    <table class="table">
+        <thead>
+              <tr>
+                <th>Production nr.</th>
+                <th>Article nr.</th>
+                <th>Article name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Create date</th>
+                <th>Target start date</th>
+                <th>Target end date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for articles_nomatch in articles_nomatch %}
+                <tr>
+                  <td>{{ articles_nomatch.production_nr }}</td>
+                  <td>{{ articles_nomatch.article_nr }}</td>
+                  <td>{{ articles_nomatch.article_name }}</td>
+                  <td>{{ articles_nomatch.amount }}</td>
+                  <td>{{ articles_nomatch.price_offer|floatformat:2 }} € <a class="glyphicon glyphicon-edit"></a><a class="glyphicon glyphicon-ok"></a></td>
+                  <td>{{ articles_nomatch.create_date }}</td>
+                  <td>{{ articles_nomatch.start_date }}</td>
+                  <td>{{ articles_nomatch.end_date }}</td>
+                  <td>{{ articles_nomatch.status }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+    </table>
 </div>
+
+<script src="iHaveNoOtherOptions.js"></script>
+
 {% endblock %}

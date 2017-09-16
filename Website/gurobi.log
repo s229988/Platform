@@ -11800,3 +11800,65 @@ Best objective 2.099000000000e+01, best bound 2.099000000000e+01, gap 0.0000%
 -------------------------
       x[1,1]            1 
 endtime[1,1]            2 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/16/17 13:34:51
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 4 rows, 3 columns and 6 nonzeros
+Variable types: 2 continuous, 1 integer (1 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+01]
+Found heuristic solution: objective -0
+Presolve removed 4 rows and 3 columns
+Presolve time: 0.18s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.30 seconds
+Thread count was 1 (of 2 available processors)
+
+Solution count 1: 20.99 
+Pool objective bound 20.99
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.099000000000e+01, best bound 2.099000000000e+01, gap 0.0000%
+
+    Variable            x 
+-------------------------
+      x[2,1]            1 
+endtime[2,1]            5 
+
+Gurobi 7.0.2 (win64, Python) logging started 09/16/17 15:00:00
+
+Parameter UpdateMode unchanged
+   Value: 1  Min: 0  Max: 1  Default: 1
+Optimize a model with 8 rows, 6 columns and 14 nonzeros
+Variable types: 4 continuous, 2 integer (2 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+00]
+  Objective range  [4e+01, 7e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+01]
+Found heuristic solution: objective -0
+Presolve removed 8 rows and 6 columns
+Presolve time: 0.17s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.22 seconds
+Thread count was 1 (of 2 available processors)
+
+Solution count 1: 707.77 
+Pool objective bound 707.77
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.077700000000e+02, best bound 7.077700000000e+02, gap 0.0000%
+
+    Variable            x 
+-------------------------
+      x[3,1]            1 
+      x[4,1]            1 
+endtime[3,1]            5 
+endtime[4,1]            2 

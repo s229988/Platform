@@ -43,6 +43,8 @@ if 'result' in d and len(d['result']) > 0:
         order.article_file_id = r['articleImages'][0]['id']
         order.price_offer = r['articlePrices'][0]['price']
         order.article_name = r['name']
+        order.article_nr = r['articleNumber']
+        order.article_id = r['id']
         r = query('article/id/{}/downloadArticleImage?articleImageId={}'.format(order.article_nr, order.article_file_id))
 
         order.article_file = r.content

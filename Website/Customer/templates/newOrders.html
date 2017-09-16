@@ -2,13 +2,13 @@
 
 <!-- input field -->
 {% block body %}
-<form action="/customer/newOrders/" method="post">
-    {% csrf_token %} Enter Production Number:
-    <select name="dropdown"> {% for production_numbers in production_numbers %}
-        <option value="{{ production_numbers }}"> {{production_numbers}} </option> {% endfor %}
+<form class="container" action="/customer/newOrders/" method="post">
+    <label>{% csrf_token %} Enter Production Number:</label>
+    <select name="dropdown-menu"> {% for production_numbers in production_numbers %}
+        <option class="dropdown-item" value="{{ production_numbers }}"> {{production_numbers}} </option> {% endfor %}
     </select>
 
-    <input type="submit" value="Hinzufügen" />
+    <input type="submit" value="Hinzufügen" class="btn btn-success myButton"/>
 
 </form>
 
