@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^newOrders/(?P<item_id>[0-9]+)/$', views.delete_item, name="delete_item"),
     url(r'^logout/$', logout, name="logout"),
     url(r'^logout/redirect/$', views.redirectStartpage, name='redirectStartpage'),
+    url(r'^change_price/(?P<order_id>[0-9]+)/(?P<article_id>[0-9]+)/$', views.change_price, name="change_price"),
 ]

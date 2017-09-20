@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webstack_django_sorting',
 ]
 
 MIDDLEWARE = [
@@ -66,8 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -132,7 +132,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'redirect/'
-LOGOUT_REDIRECT_URL = 'redirect/'
+LOGOUT_REDIRECT_URL = '/startpage/'
+LOGIN_URL = '/startpage/'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',

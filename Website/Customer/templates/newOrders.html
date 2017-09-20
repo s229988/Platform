@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
+{% load sorting_tags %}
+
 <!-- input field -->
 {% block body %}
 <form class="container" action="/customer/newOrders/" method="post">
-    <label>{% csrf_token %} Enter Production Number:</label>
-    <select name="dropdown-menu"> {% for production_numbers in production_numbers %}
+    <label>{% csrf_token %} Please choose a production plan :</label>
+    <select name="dropdown-menu">
+        <option disabled selected value> -- select an option -- </option>
+        {% for production_numbers in production_numbers %}
         <option class="dropdown-item" value="{{ production_numbers }}"> {{production_numbers}} </option> {% endfor %}
     </select>
 
@@ -12,28 +16,29 @@
 
 </form>
 
-{% for message in messages %}
-<div class="alert {{ message.tags }} alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-</div>
-{% endfor %}
+<!--{% for message in messages %}-->
+<!--<div class="alert {{ message.tags }} alert-dismissible" role="alert">-->
+    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+        <!--<span aria-hidden="true">&times;</span>-->
+    <!--</button>-->
+    <!--{{ message }}-->
+<!--</div>-->
+<!--{% endfor %}-->
 
 <div class="container">
     <h1>Pending</h1>
+    {% autosort articles_pending %}
     <table class="table">
         <thead>
             <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
+                <th>{% anchor production_nr _("Production #") %}</th>
+                <th>{% anchor article_nr _("Article #") %}</th>
+                <th>{% anchor article_name _("Article name") %}</th>
+                <th>{% anchor amount _("Amount") %}</th>
+                <th>{% anchor price_offer _("Price") %}</th>
+                <th>{% anchor create_date _("Create date") %}</th>
+                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
                 <th>Delete</th>
             </tr>

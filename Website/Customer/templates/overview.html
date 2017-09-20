@@ -1,52 +1,56 @@
 {% extends 'base.html' %}
 
+{% load sorting_tags %}
+
 {% block body %}
 
 
 <div class="container">
     <h1>Pending</h1>
+    {% autosort articles_pending %}
     <table class="table">
         <thead>
-              <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
+            <tr>
+                <th>{% anchor production_nr _("Production #") %}</th>
+                <th>{% anchor article_nr _("Article #") %}</th>
+                <th>{% anchor article_name _("Article name") %}</th>
+                <th>{% anchor amount _("Amount") %}</th>
+                <th>{% anchor price_offer _("Price") %}</th>
+                <th>{% anchor create_date _("Create date") %}</th>
+                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for articles_pending in articles_pending %}
-                <tr>
-                  <td>{{ articles_pending.production_nr }}</td>
-                  <td>{{ articles_pending.article_nr }}</td>
-                  <td>{{ articles_pending.article_name }}</td>
-                  <td>{{ articles_pending.amount }}</td>
-                  <td>{{ articles_pending.price_offer|floatformat:2 }} €</td>
-                  <td>{{ articles_pending.create_date }}</td>
-                  <td>{{ articles_pending.start_date }}</td>
-                  <td>{{ articles_pending.end_date }}</td>
-                  <td>{{ articles_pending.status }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articles_pending in articles_pending %}
+            <tr>
+                <td>{{ articles_pending.production_nr }}</td>
+                <td>{{ articles_pending.article_nr }}</td>
+                <td>{{ articles_pending.article_name }}</td>
+                <td>{{ articles_pending.amount }}</td>
+                <td>{{ articles_pending.price_offer|floatformat:2 }} €</td>
+                <td>{{ articles_pending.create_date }}</td>
+                <td>{{ articles_pending.start_date }}</td>
+                <td>{{ articles_pending.end_date }}</td>
+                <td>{{ articles_pending.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
      <h1>In production</h1>
+    {% autosort articles_inproduction %}
     <table class="table">
         <thead>
               <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
+                <th>{% anchor production_nr _("Production #") %}</th>
+                <th>{% anchor article_nr _("Article #") %}</th>
+                <th>{% anchor article_name _("Article name") %}</th>
+                <th>{% anchor amount _("Amount") %}</th>
+                <th>{% anchor price_offer _("Price") %}</th>
+                <th>{% anchor create_date _("Create date") %}</th>
+                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -67,17 +71,18 @@
             </tbody>
     </table>
         <h1>Done</h1>
+    {% autosort articles_done %}
     <table class="table">
         <thead>
               <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
+                <th>{% anchor production_nr _("Production #") %}</th>
+                <th>{% anchor article_nr _("Article #") %}</th>
+                <th>{% anchor article_name _("Article name") %}</th>
+                <th>{% anchor amount _("Amount") %}</th>
+                <th>{% anchor price_offer _("Price") %}</th>
+                <th>{% anchor create_date _("Create date") %}</th>
+                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -98,17 +103,18 @@
             </tbody>
     </table>
      <h1>No match</h1>
+    {% autosort articles_nomatch %}
     <table class="table">
         <thead>
               <tr>
-                <th>Production nr.</th>
-                <th>Article nr.</th>
-                <th>Article name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Create date</th>
-                <th>Target start date</th>
-                <th>Target end date</th>
+                <th>{% anchor production_nr _("Production #") %}</th>
+                <th>{% anchor article_nr _("Article #") %}</th>
+                <th>{% anchor article_name _("Article name") %}</th>
+                <th>{% anchor amount _("Amount") %}</th>
+                <th>{% anchor price_offer _("Price") %}</th>
+                <th>{% anchor create_date _("Create date") %}</th>
+                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -119,7 +125,13 @@
                   <td>{{ articles_nomatch.article_nr }}</td>
                   <td>{{ articles_nomatch.article_name }}</td>
                   <td>{{ articles_nomatch.amount }}</td>
-                  <td>{{ articles_nomatch.price_offer|floatformat:2 }} € <a class="glyphicon glyphicon-edit"></a><a class="glyphicon glyphicon-ok"></a></td>
+                  <td>
+                      <form action="{% url 'change_price' order_id=articles_nomatch.pk article_id=articles_nomatch.article_id %}" method="post">{% csrf_token %}
+                      <input type="number" name=new_price id="new_price" step="0.01" value="{{ articles_nomatch.price_offer|floatformat:2 }}" style="width: 5em;" />
+                      <input class="btn btn-success myButton" type="submit" value="Save"/>
+                      </form>
+                  </td>
+                  <!--<td>{{ articles_nomatch.price_offer|floatformat:2 }} € <a class="glyphicon glyphicon-edit"></a><a class="glyphicon glyphicon-ok"></a></td>-->
                   <td>{{ articles_nomatch.create_date }}</td>
                   <td>{{ articles_nomatch.start_date }}</td>
                   <td>{{ articles_nomatch.end_date }}</td>
@@ -129,7 +141,5 @@
             </tbody>
     </table>
 </div>
-
-<script src="iHaveNoOtherOptions.js"></script>
 
 {% endblock %}

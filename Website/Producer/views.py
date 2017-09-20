@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.db import connection
 from django.shortcuts import render_to_response
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 import subprocess
 
 from .models import Orders, Machines, Matches, Producers
@@ -15,10 +16,12 @@ def redirect(request):
 def redirectStartpage(request):
     return HttpResponseRedirect('/producer/login')
 
+
+@login_required
 def assignments(request):
     producerID = request.user.username
 
-    subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/checkmail.py'])
+    subprocess.check_output(['python', 'C:/Users/s229988/PycharmProjects/Platform/Matching/checkmail.py'])
 
 
     cursor = connection.cursor()
@@ -37,6 +40,7 @@ def assignments(request):
     return render(request, 'assignments.html', context)
 
 
+@login_required
 def add_machine(request):
     producerID = (request.user.username)
     # if this is a POST request we need to process the form data
@@ -76,6 +80,7 @@ def add_machine(request):
     return render(request, 'capacity.html', {'form': form, 'capacity_list': capacities})
 
 
+@login_required
 def safe_status(request, item_id, new_status):
     if new_status == '1':
         status_changed = Orders.objects.filter(pk=item_id).update(status='pending')
@@ -85,6 +90,7 @@ def safe_status(request, item_id, new_status):
     return HttpResponseRedirect('/producer/assignments')
 
 
+@login_required
 def change_capacity(request, machine_id):
     if request.method == 'POST':
         new_capa = int(request.POST.get('new_capacity'))
@@ -99,6 +105,7 @@ def change_capacity(request, machine_id):
     return HttpResponseRedirect('/producer/add_machine')
 
 
+@login_required
 def delete_machine(request, machine_id):
     cursor = connection.cursor()
     query = 'SELECT COUNT(machine_id) FROM website.matches WHERE machine_id="{}"'.format(machine_id)

@@ -13,9 +13,9 @@ def matching(request):
         # call matching script
         if Machines.objects.all().exists():
             if Orders.objects.filter(status= 'pending').exists():
-                subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/matching.py"])
+                subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/Matching/matching.py"])
                 # send mail
-                subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/MatchingProgramm/sendmail.py"])
+                subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/Matching/sendmail.py"])
 
                 messages.add_message(request, messages.ERROR, 'Matching successfully completed.')
 
