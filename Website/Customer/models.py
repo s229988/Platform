@@ -44,7 +44,7 @@ class Orders(models.Model):
     article_file = models.TextField(blank=True, null=True)
     amount = models.IntegerField(blank=True, null=True)
     price_offer = models.FloatField(blank=True, null=True)
-    create_date = models.DateTimeField(blank=True, null=True)
+    duration = models.IntegerField(blank=True, null=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     status = models.TextField(blank=True, null=True)

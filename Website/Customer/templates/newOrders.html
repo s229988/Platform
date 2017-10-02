@@ -16,15 +16,6 @@
 
 </form>
 
-<!--{% for message in messages %}-->
-<!--<div class="alert {{ message.tags }} alert-dismissible" role="alert">-->
-    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-        <!--<span aria-hidden="true">&times;</span>-->
-    <!--</button>-->
-    <!--{{ message }}-->
-<!--</div>-->
-<!--{% endfor %}-->
-
 <div class="container">
     <h1>Pending</h1>
     {% autosort articles_pending %}
@@ -36,8 +27,8 @@
                 <th>{% anchor article_name _("Article name") %}</th>
                 <th>{% anchor amount _("Amount") %}</th>
                 <th>{% anchor price_offer _("Price") %}</th>
-                <th>{% anchor create_date _("Create date") %}</th>
-                <th>{% anchor start_date _("Target start date") %}</th>
+                <th>{% anchor duration _("Duration") %}</th>
+                <!--<th>{% anchor start_date _("Target start date") %}</th>-->
                 <th>{% anchor end_date _("Target end date") %}</th>
                 <th>Status</th>
                 <th>Delete</th>
@@ -51,8 +42,8 @@
                 <td>{{ articles_pending.article_name }}</td>
                 <td>{{ articles_pending.amount }}</td>
                 <td>{{ articles_pending.price_offer|floatformat:2 }} €</td>
-                <td>{{ articles_pending.create_date }}</td>
-                <td>{{ articles_pending.start_date }}</td>
+                <td>{{ articles_pending.duration }} days</td>
+                <!--<td>{{ articles_pending.start_date }}</td>-->
                 <td>{{ articles_pending.end_date }}</td>
                 <td>{{ articles_pending.status }}</td>
                 <td>

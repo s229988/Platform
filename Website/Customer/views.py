@@ -31,6 +31,8 @@ def newOrders(request):
         try:
             subprocess.check_output(
                 ['python', 'C:/Users/s229988/PycharmProjects/Platform/ERP_System/crawl.py', pnr, customerID])
+
+
         except Exception:
             messages.add_message(request, messages.ERROR,
                                  'The production number {} has no Price or Article File found in your ERP System . Please check with your system'.format(pnr))
@@ -53,12 +55,12 @@ def newOrders(request):
     for item in production_numbers:
         production_numbers[i] = int(item)
         i += 1
-    print(production_numbers)
+
     cursor = connection.cursor()
 
     cursor.execute("SELECT  o.production_nr FROM orders o")
     production_nr_existing = cursor.fetchall()
-    print(production_nr_existing)
+
       # Check if production_numbers is already in table orders
     # i = 0
     # item = None
@@ -74,8 +76,7 @@ def newOrders(request):
         for items in reversed(production_nr_existing):
             if item in items:
                 production_numbers.remove(item)
-    print(production_numbers)
-    print(production_nr_existing)
+
 
     # get all orders with status = pending
     articles_pending = Orders.objects.filter(customer=customerID, status="pending").defer("article_file")
@@ -93,8 +94,9 @@ def overview(request):
     articles_inproduction = Orders.objects.filter(customer=customerID, status="in production").defer("article_file")
     articles_nomatch = Orders.objects.filter(customer=customerID, status="no match").defer("article_file")
     articles_done = Orders.objects.filter(customer=customerID, status="done").defer("article_file")
+    articles_canceled = Orders.objects.filter(customer=customerID, status="canceled").defer("article_file")
 
-    return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_nomatch': articles_nomatch, 'articles_done': articles_done})
+    return render(request, 'overview.html', {'articles_pending': articles_pending, 'articles_inproduction': articles_inproduction, 'articles_nomatch': articles_nomatch, 'articles_done': articles_done, 'articles_canceled': articles_canceled})
 
 @login_required
 def delete_item(request, item_id):

@@ -26,16 +26,19 @@ def assignments(request):
 
     cursor = connection.cursor()
 
-    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, o.create_date, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, o.duration, o.start_date, o.end_date, o.status FROM orders o, customers c WHERE o.status = 'pending' AND c.id = o.customer_id")
     articles_pending = cursor.fetchall()
 
-    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.duration, o.start_date, o.end_date, o.status, o.id FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'in production' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_inproduction = cursor.fetchall()
 
-    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.create_date, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.duration, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'done' AND c.id = o.customer_id GROUP BY m.id", [producerID])
     articles_done = cursor.fetchall()
 
-    context = {"articles_pending": articles_pending, "articles_inproduction": articles_inproduction,  "articles_done": articles_done }
+    cursor.execute("SELECT  o.production_nr, o.article_nr, o.article_name, o.amount, o.price_offer, c.companyname, ma.machinename, o.duration, o.start_date, o.end_date, o.status FROM orders o, producers p, machines ma, matches m, customers c WHERE ma.producer_id=%s AND m.machine_id = ma.id AND m.order_id = o.id AND o.status = 'canceled' AND c.id = o.customer_id GROUP BY m.id", [producerID])
+    articles_canceled = cursor.fetchall()
+
+    context = {"articles_pending": articles_pending, "articles_inproduction": articles_inproduction,  "articles_done": articles_done, "articles_canceled": articles_canceled }
 
     return render(request, 'assignments.html', context)
 
@@ -58,7 +61,7 @@ def add_machine(request):
             machinenames = Machines.objects.only('machinename')
 
             if capa >= 0:
-                if Machines.objects.filter(machinename=name).exists():
+                if Machines.objects.filter(machinename=name).exists() and producerID == Producers.objects.get(pk=producerID) :
                     messages.add_message(request, messages.ERROR, 'Machine name already used. Please choose another name.')
                 else:
                     # create new entry in database

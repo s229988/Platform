@@ -1,10 +1,9 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from .models import Machines, Orders
+from .models import Machines, Orders, Customers
 from django.contrib import messages
 
 import subprocess
-from django.contrib.admin.views.decorators import staff_member_required
 
 def matching(request):
     # if this is a POST request we need to process the form data
@@ -17,7 +16,7 @@ def matching(request):
                 # send mail
                 subprocess.call(["python", "C:/Users/s229988/PycharmProjects/Platform/Matching/sendmail.py"])
 
-                messages.add_message(request, messages.ERROR, 'Matching successfully completed.')
+                messages.add_message(request, messages.ERROR, 'Matching successfully completed. Emails have been send to all producers to inform them what to produce.')
 
                 # redirect to a new URL:
                 return HttpResponseRedirect('/admin/')
